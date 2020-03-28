@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="App test suite" parallel="classes">
+  <parameter name="Environment" value="${env}"/>
+  <test name="Tests">
+<!--    <groups>-->
+<!--      <run>-->
+<!--        <include name="${scope}"/>-->
+<!--        <exclude name="deprecated"/>-->
+<!--      </run>-->
+<!--    </groups>-->
+    <packages>
+      <package name="com.dzmitrykamarou.app.ta.test.api.accounts.*"/>
+    </packages>
+  </test>
+  <listeners>
+<!--    <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
+  </listeners>
+</suite>
