@@ -42,6 +42,17 @@
     </pluginManagement>
   </build>
 
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>bintray-epam-reportportal</id>
+      <name>bintray</name>
+      <url>http://dl.bintray.com/epam/reportportal</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>org.testng</groupId>
@@ -85,6 +96,33 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.30</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.epam.reportportal</groupId>
+      <artifactId>agent-java-testng</artifactId>
+      <version>4.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.epam.reportportal</groupId>
+      <artifactId>logger-java-logback</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20190722</version>
     </dependency>
   </dependencies>
 </project>

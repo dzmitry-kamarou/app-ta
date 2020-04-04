@@ -1,60 +1,33 @@
 package com.dzmitrykamarou.app.ta.test.api.accounts;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
 
+import com.dzmitrykamarou.app.ta.api.service.AccountsService;
 import com.dzmitrykamarou.app.ta.business.account.Account;
 import com.dzmitrykamarou.app.ta.business.account.AccountFactory;
-import com.dzmitrykamarou.app.ta.config.AppConfig;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@Test(suiteName = "POST /accounts test suite", groups = {"api", "regression"})
 public class PostAccountTest {
 
-  private Response response;
-  private Account account;
+  private AccountsService accountsService = new AccountsService();
+  private Account account = AccountFactory.randomAccount();
 
-  @BeforeClass(description = "Set up")
-  public void setUp() {
-    response = given()
-        .baseUri(AppConfig.config.host())
-        .port(AppConfig.config.port())
-        .basePath("/accounts")
-        .contentType(ContentType.JSON)
-        .body(account = AccountFactory.randomAccount())
-        .when()
-        .post();
+  @Test(description = "POST /accounts test")
+  public void postValidAccountTest() {
+    Response response = accountsService.postAccount(account);
+    account.setId(response.body().jsonPath().getLong("id"));
+    Account created = response.body().as(Account.class);
+    assertThat("Status code should be 200", response.statusCode(), is(200));
+    assertThat("Body should contains valid data", created, samePropertyValuesAs(account));
   }
 
-  @Test(description = "Response code test")
-  public void responseCodeTest() {
-    response.then()
-        .statusCode(200);
-  }
-
-  @Test(description = "Response body test")
-  public void responseBodyTest() {
-    response.then()
-        .body("firstName", equalTo(account.getFirstName()))
-        .body("lastName", equalTo(account.getLastName()))
-        .body("id", greaterThan(0));
-  }
-
-  @AfterClass
+  @AfterClass(description = "Delete created account")
   public void tearDown() {
-    given()
-        .baseUri(AppConfig.config.host())
-        .port(AppConfig.config.port())
-        .basePath("/accounts/")
-        .pathParam("id", response
-            .body()
-            .jsonPath()
-            .get("id"))
-        .when()
-        .delete("/{id}");
+    accountsService.deleteAccount(account.getId());
   }
 }

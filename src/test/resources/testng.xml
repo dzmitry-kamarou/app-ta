@@ -2,17 +2,17 @@
 <suite name="App test suite" parallel="classes">
   <parameter name="Environment" value="${env}"/>
   <test name="Tests">
-<!--    <groups>-->
-<!--      <run>-->
-<!--        <include name="${scope}"/>-->
-<!--        <exclude name="deprecated"/>-->
-<!--      </run>-->
-<!--    </groups>-->
+    <!--    <groups>-->
+    <!--      <run>-->
+    <!--        <include name="${scope}"/>-->
+    <!--        <exclude name="deprecated"/>-->
+    <!--      </run>-->
+    <!--    </groups>-->
     <packages>
-      <package name="com.dzmitrykamarou.app.ta.test.api.accounts.*"/>
+      <package name="com.dzmitrykamarou.app.ta.test.*"/>
     </packages>
   </test>
   <listeners>
-<!--    <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
+    <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
   </listeners>
 </suite>
