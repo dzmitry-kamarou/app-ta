@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="App test suite" parallel="classes">
+<suite name="Diamond test suite" parallel="classes">
   <parameter name="Environment" value="${env}"/>
   <test name="Tests">
     <!--    <groups>-->
@@ -9,7 +9,7 @@
     <!--      </run>-->
     <!--    </groups>-->
     <packages>
-      <package name="com.dzmitrykamarou.app.ta.test.*"/>
+      <package name="com.dzmitrykamarou.diamond.taf.test.*"/>
     </packages>
   </test>
   <listeners>

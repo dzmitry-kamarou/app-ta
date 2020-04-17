@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.dzmitrykamarou</groupId>
-  <artifactId>app-ta</artifactId>
+  <artifactId>diamond-taf-java</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>app-ta</name>
-  <description>Test Automation framework for app application</description>
+  <name>diamond-taf-java</name>
+  <description>Test Automation Framework for diamond application</description>
 
   <properties>
     <java.version>8</java.version>
