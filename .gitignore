@@ -1,0 +1,5 @@
+# Compiled classes folder
+target/
+
+# IntelliJ IDEA files
+.idea/
