@@ -1,0 +1,63 @@
+{
+  "env": "prod",
+  "branch": "master",
+  "tests": [
+    {
+      "name": "smoke",
+      "percent": 100
+    }
+  ],
+  "quality_gate": {
+    "env": "stg",
+    "branch": "release",
+    "tests": [
+      {
+        "name": "regression",
+        "percent": 80
+      },
+      {
+        "name": "${ticket_id}",
+        "percent": 100
+      }
+    ],
+    "quality_gate": {
+      "env": "qa",
+      "branch": "release",
+      "tests": [
+        {
+          "name": "smoke",
+          "percent": 100
+        },
+        {
+          "name": "regression",
+          "percent": 80
+        }
+      ],
+      "quality_gate": {
+        "env": "dev",
+        "branch": "develop",
+        "tests": [
+          {
+            "name": "smoke",
+            "percent": 100
+          },
+          {
+            "name": "${ticket_id}",
+            "percent": 100
+          }
+        ],
+        "quality_gate": {
+          "env": "local",
+          "branch": "${ticket_id}",
+          "tests": [
+            {
+              "name": "${ticket_id}",
+              "percent": 100
+            }
+          ],
+          "quality_gate": null
+        }
+      }
+    }
+  }
+}
