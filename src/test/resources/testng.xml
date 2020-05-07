@@ -2,12 +2,12 @@
 <suite name="Diamond test suite" parallel="classes">
   <parameter name="Environment" value="${env}"/>
   <test name="Tests">
-    <!--    <groups>-->
-    <!--      <run>-->
-    <!--        <include name="${scope}"/>-->
-    <!--        <exclude name="deprecated"/>-->
-    <!--      </run>-->
-    <!--    </groups>-->
+    <groups>
+      <run>
+        <include name="${scope}"/>
+        <exclude name="deprecated"/>
+      </run>
+    </groups>
     <packages>
       <package name="com.dzmitrykamarou.diamond.taf.test.*"/>
     </packages>
