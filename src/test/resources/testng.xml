@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Diamond test suite" parallel="classes">
-  <parameter name="Environment" value="${env}"/>
+  <!--  <parameter name="Environment" value="${env}"/>-->
   <test name="Tests">
     <groups>
       <run>
