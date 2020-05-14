@@ -9,10 +9,10 @@ pipeline {
                 }
             }
         }
-        stage('sanity check') {
-            steps {
-                input "Does the staging environment look ok?"
-            }
-        }
+//        stage('sanity check') {
+//            steps {
+//                input "Does the staging environment look ok?"
+//            }
+//        }
     }
 }
