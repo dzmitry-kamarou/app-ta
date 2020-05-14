@@ -10,7 +10,7 @@ import java.util.HashMap;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Test(suiteName = "GET /healthcheck test suite", groups = {"regression", "smoke"})
+@Test(suiteName = "GET /healthcheck test suite", groups = {"smoke", "regression", "healthcheck"})
 public class GetHealthCheckTest {
 
   private final HealthCheckService healthCheckService = new HealthCheckService();
