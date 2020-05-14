@@ -10,23 +10,28 @@ import java.util.HashMap;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Test(suiteName = "GET /healthcheck test suite", groups = {"api", "regression", "smoke"})
+@Test(suiteName = "GET /healthcheck test suite", groups = {"regression", "smoke"})
 public class GetHealthCheckTest {
 
-  private HealthCheckService healthCheckService = new HealthCheckService();
-  private HashMap<String, String> healthy = new HashMap<>();
+  private final HealthCheckService healthCheckService = new HealthCheckService();
+  private final HashMap<String, String> healthy = new HashMap<>();
+  private Response response;
 
   @BeforeClass(description = "Set healthy")
   public void setUp() {
     healthy.put("API", "UP");
     healthy.put("DB", "UP");
+    response = healthCheckService.getHealthCheck();
   }
 
-  @Test(description = "GET /healthcheck test")
-  public void getHealthCheckTest() {
-    Response response = healthCheckService.getHealthCheck();
-    HashMap<String, String> received = response.body().as(HashMap.class);
+  @Test(description = "GET /healthcheck returns code 200")
+  public void getHealthCheckCodeTest() {
     assertThat("Status code should be 200", response.statusCode(), is(200));
-    assertThat("Body should contains valid data", received.entrySet(), equalTo(healthy.entrySet()));
+  }
+
+  @Test(description = "GET /healthcheck returns correct body")
+  public void getHealthCheckBodyTest() {
+    assertThat("Body should contains valid data", response.body().as(HashMap.class).entrySet(),
+        equalTo(healthy.entrySet()));
   }
 }
