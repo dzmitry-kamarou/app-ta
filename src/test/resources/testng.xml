@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="[${env}] [${scope}] diamond suite" parallel="classes">
-  <!--  <parameter name="Environment" value="${env}"/>-->
-  <test name="[${env}] [${scope}] diamond test">
-    <groups>
-      <run>
-        <include name="${scope}"/>
-        <exclude name="deprecated"/>
-      </run>
-    </groups>
+<suite name="Diamond test suite" parallel="classes">
+  <parameter name="Environment" value="${env}"/>
+  <test name="Tests">
+    <!--    <groups>-->
+    <!--      <run>-->
+    <!--        <include name="${scope}"/>-->
+    <!--        <exclude name="deprecated"/>-->
+    <!--      </run>-->
+    <!--    </groups>-->
     <packages>
       <package name="com.dzmitrykamarou.diamond.taf.test.*"/>
     </packages>
