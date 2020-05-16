@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="diamond [${env}] [${scope}] suite" parallel="classes">
+<suite name="[${env}] [${scope}] diamond suite" parallel="classes">
   <!--  <parameter name="Environment" value="${env}"/>-->
-  <test name="diamond [${env}] [${scope}] test">
+  <test name="[${env}] [${scope}] diamond test">
     <groups>
       <run>
         <include name="${scope}"/>

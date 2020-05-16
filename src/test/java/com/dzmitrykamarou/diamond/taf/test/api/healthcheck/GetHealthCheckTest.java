@@ -24,14 +24,14 @@ public class GetHealthCheckTest {
     response = healthCheckService.getHealthCheck();
   }
 
-  @Test(description = "GET /healthcheck returns code 200")
+  @Test(description = "GET /healthcheck returns code 200", groups = "DIAM-1")
   public void getHealthCheckCodeTest() {
     assertThat("Status code should be 200", response.statusCode(), is(200));
   }
 
-  @Test(description = "GET /healthcheck returns correct body")
+  @Test(description = "GET /healthcheck returns correct body", groups = "DIAM-1")
   public void getHealthCheckBodyTest() {
-    assertThat("Body should contains valid data", response.body().as(HashMap.class).entrySet(),
-        equalTo(healthy.entrySet()));
+    assertThat("Body should contains valid data", response.body().as(HashMap.class)
+        .entrySet(), equalTo(healthy.entrySet()));
   }
 }
