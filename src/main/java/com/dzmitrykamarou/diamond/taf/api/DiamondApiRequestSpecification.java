@@ -11,15 +11,13 @@ import io.restassured.specification.RequestSpecification;
 
 public class DiamondApiRequestSpecification {
 
-  private static final String BASE_URI = DiamondConfig.config.host();
-  private static final int PORT = DiamondConfig.config.port();
+  private static final String BASE_URI = DiamondConfig.config.uri();
   private static final ThreadLocal<RequestSpecification> THREAD_LOCAL_INSTANCE = new ThreadLocal<>();
 
   public static synchronized RequestSpecification getRequestSpecification() {
     if (THREAD_LOCAL_INSTANCE.get() == null) {
       THREAD_LOCAL_INSTANCE.set(new RequestSpecBuilder()
           .setBaseUri(BASE_URI)
-          .setPort(PORT)
           .addFilters(asList(new CustomCookieFilter(), new CustomFilter()))
           .setContentType(ContentType.JSON)
           .setUrlEncodingEnabled(false)

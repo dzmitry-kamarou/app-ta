@@ -12,11 +12,8 @@ import org.aeonbits.owner.crypto.AbstractDecryptor;
 @DecryptorClass(Decryptor.class)
 public interface DiamondConfig extends Config {
 
-  @Key("host")
-  String host();
-
-  @Key("port")
-  int port();
+  @Key("uri")
+  String uri();
 
   DiamondConfig config = ConfigFactory
       .create(DiamondConfig.class, System.getProperties(), System.getenv());
