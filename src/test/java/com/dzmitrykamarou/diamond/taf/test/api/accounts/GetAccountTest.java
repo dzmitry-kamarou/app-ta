@@ -1,42 +1,38 @@
 package com.dzmitrykamarou.diamond.taf.test.api.accounts;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.beans.SamePropertyValuesAs.samePropertyValuesAs;
 
 import com.dzmitrykamarou.diamond.taf.api.service.AccountsService;
 import com.dzmitrykamarou.diamond.taf.business.account.Account;
 import com.dzmitrykamarou.diamond.taf.business.account.AccountFactory;
 import io.restassured.response.Response;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@Test(suiteName = "GET /accounts/{id} test suite", groups = {"api", "regression"})
+@Test(suiteName = "GET /accounts/{id} test suite", groups = {"api", "regression", "accounts"})
 public class GetAccountTest {
 
-  private AccountsService accountsService = new AccountsService();
-  private Account account = AccountFactory.randomAccount();
+  private final AccountsService accountsService = new AccountsService();
+  private final Account existAccount = AccountFactory.existAccount();
+  private Response response;
 
-  @BeforeClass(description = "Create account")
+  @BeforeClass(description = "Create account", alwaysRun = true)
   public void setUp() {
-    account.setId(accountsService
-        .postAccount(account)
-        .body()
-        .jsonPath()
-        .getLong("id"));
+    response = accountsService.getAccount(existAccount.getId());
   }
 
-  @Test(description = "GET /accounts/{id} test")
-  public void getAccountTest() {
-    Response response = accountsService.getAccount(account.getId());
-    Account received = response.body().as(Account.class);
+  @Test(description = "GET /accounts/{id} returns code 200")
+  public void getAccountCodeTest() {
     assertThat("Status code should be 200", response.statusCode(), is(200));
-    assertThat("Body should contains valid data", received, samePropertyValuesAs(account));
   }
 
-  @AfterClass(description = "Delete created account")
-  public void tearDown() {
-    accountsService.deleteAccount(account.getId());
+  @Test(description = "GET /accounts/{id} returns exist account", groups = {"smoke"})
+  public void getAccountBodyTest() {
+    assertThat("Exist account should be returned", response.body().as(Account.class),
+        allOf(notNullValue(), samePropertyValuesAs(existAccount, "updatedAt")));
   }
 }
