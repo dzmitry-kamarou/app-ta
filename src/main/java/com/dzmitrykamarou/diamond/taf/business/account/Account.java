@@ -1,16 +1,18 @@
 package com.dzmitrykamarou.diamond.taf.business.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.dzmitrykamarou.diamond.taf.util.TimeUtil;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.Calendar;
 
 public class Account {
 
   private Long id;
+  private String userName;
   private String firstName;
   private String lastName;
-  @JsonIgnore
+  @JsonDeserialize(using = TimeUtil.class)
   private Calendar createdAt;
-  @JsonIgnore
+  @JsonDeserialize(using = TimeUtil.class)
   private Calendar updatedAt;
 
   public Long getId() {
@@ -19,6 +21,14 @@ public class Account {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getFirstName() {
