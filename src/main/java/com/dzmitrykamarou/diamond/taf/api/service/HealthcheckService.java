@@ -2,7 +2,7 @@ package com.dzmitrykamarou.diamond.taf.api.service;
 
 import io.restassured.response.Response;
 
-public class HealthCheckService extends BaseApiService {
+public class HealthcheckService extends BaseApiService {
 
   private static final String HEALTH_CHECK_ENDPOINT = "/healthcheck";
 
