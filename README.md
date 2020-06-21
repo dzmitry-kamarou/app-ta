@@ -1,4 +1,4 @@
-# diamond-taf-java
+# diamond-taf
 Test automation framework written in Java to test [diamond](https://github.com/dzmitry-kamarou/diamond) application.
 ## Prerequisites
 Require **Java** and **Maven** installed.
