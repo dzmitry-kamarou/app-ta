@@ -30,7 +30,7 @@ public class GetAccountTest {
     assertThat("Status code should be 200", response.statusCode(), is(200));
   }
 
-  @Test(description = "GET /accounts/{id} returns exist account", groups = {"smoke"})
+  @Test(description = "GET /accounts/{id} returns exist account")
   public void getAccountBodyTest() {
     assertThat("Exist account should be returned", response.body().as(Account.class),
         allOf(notNullValue(), samePropertyValuesAs(existAccount, "updatedAt")));
