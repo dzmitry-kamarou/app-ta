@@ -15,7 +15,7 @@ public class DiamondApiRequestSpecification {
   private static final DiamondConfig DIAMOND_CONFIG = DiamondConfig.config;
   private static final String URI = DIAMOND_CONFIG.uri();
   private static final String API_ENDPOINT = "/api";
-  private static final String API_VERSION = "v1";
+  private static final String API_VERSION = "/v1";
 
   public static synchronized RequestSpecification getRequestSpecification() {
     if (THREAD_LOCAL_INSTANCE.get() == null) {
