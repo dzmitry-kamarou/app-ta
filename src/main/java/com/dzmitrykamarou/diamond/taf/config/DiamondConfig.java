@@ -15,12 +15,6 @@ public interface DiamondConfig extends Config {
   @Key("uri")
   String uri();
 
-  @Key("api_endpoint")
-  String apiEndpoint();
-
-  @Key("api_version")
-  String apiVersion();
-
   DiamondConfig config = ConfigFactory
       .create(DiamondConfig.class, System.getProperties(), System.getenv());
 

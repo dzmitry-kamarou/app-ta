@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import com.dzmitrykamarou.diamond.taf.api.flow.HealthcheckFlow;
 import org.testng.annotations.Test;
 
-@Test(suiteName = "Healthcheck suite", groups = {"smoke", "regression"})
+@Test(suiteName = "Healthcheck suite", groups = {"smoke", "regression", "healthcheck"})
 public class HealthcheckCanBeReceivedTest {
 
   String upStatus = "UP";
