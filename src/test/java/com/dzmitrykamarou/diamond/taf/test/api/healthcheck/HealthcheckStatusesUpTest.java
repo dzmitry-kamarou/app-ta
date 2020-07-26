@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 @Test(suiteName = "Healthcheck suite", groups = {"smoke", "regression", "healthcheck"})
 public class HealthcheckStatusesUpTest {
 
-  private final HealthcheckFlow healthcheckFlow = new HealthcheckFlow();
   private static final String EXPECTED_STATUS = "UP";
+  private final HealthcheckFlow healthcheckFlow = new HealthcheckFlow();
 
   @Test(description = "Healthcheck statuses test")
   public void healthcheckStatusesUpTest() {
