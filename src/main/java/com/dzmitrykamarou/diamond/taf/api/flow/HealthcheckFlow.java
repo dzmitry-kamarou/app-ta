@@ -1,25 +1,29 @@
 package com.dzmitrykamarou.diamond.taf.api.flow;
 
+import com.dzmitrykamarou.diamond.taf.api.action.HealthcheckAction;
 import com.dzmitrykamarou.diamond.taf.api.service.HealthcheckService;
+import io.restassured.response.Response;
 import java.util.HashMap;
 
-public interface HealthcheckFlow {
+public class HealthcheckFlow implements HealthcheckAction {
 
-  HealthcheckService healthcheckService = new HealthcheckService();
+  private static final String DB = "DB";
+  private static final String API = "API";
+  private final HealthcheckService healthcheckService = new HealthcheckService();
 
-  static String dbStatus() {
-    return (String) healthcheckService
-        .getHealthCheck()
-        .body()
-        .as(HashMap.class)
-        .get("DB");
+  public String dbStatus() {
+    return allStatuses().get(DB);
   }
 
-  static String apiStatus() {
-    return (String) healthcheckService
-        .getHealthCheck()
-        .body()
-        .as(HashMap.class)
-        .get("API");
+  public String apiStatus() {
+    return allStatuses().get(API);
+  }
+
+  public HashMap<String, String> allStatuses() {
+    HashMap<String, String> statuses = new HashMap<>();
+    Response response = healthcheckService.getHealthCheck();
+    statuses.put(API, response.path(API));
+    statuses.put(DB, response.path(DB));
+    return statuses;
   }
 }
